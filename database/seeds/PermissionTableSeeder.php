@@ -103,17 +103,11 @@ class PermissionTableSeeder extends Seeder
             'description'   => 'Puede listar y navegar usuarios',
         ]);
 
-        $permission_profesor[] = $permission->id ;
-
-
         $permission = Permission::create([
             'name'          => 'Ver detalles de usuarios',
             'slug'          => 'user.show',
             'description'   => 'Puede ver detalles de usuarios',
         ]);
-
-        $permission_profesor[] = $permission->id ;
-        $permission_estudiante[] = $permission->id ;
 
         $permission = Permission::create([
             'name'          => 'Editar usuarios',
@@ -121,15 +115,11 @@ class PermissionTableSeeder extends Seeder
             'description'   => 'Puede editar usuarios',
         ]);
 
-        $permission_profesor[] = $permission->id ;
-
         $permission = Permission::create([
             'name'          => 'Eliminar usuarios',
             'slug'          => 'user.destroy',
             'description'   => 'Puede eliminar usuarios',
         ]);
-
-        $permission_profesor[] = $permission->id ;
 
 	    $permission = Permission::create([
             'name'          => 'Ver detalles de su propio usuario',

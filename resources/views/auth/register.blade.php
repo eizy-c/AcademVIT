@@ -24,7 +24,7 @@
               <div class="tab-pane fade show active" id="datosAula-tab" role="tabpanel" aria-labelledby="datosAula-tab">
                 <div class="form-group row">
                   <label for="nombreaula" class="font-weight-bold">Nombre del aula</label>
-                  <input type="text" class="form-control" id="nombreaula" name="nombreaula">
+                  <input type="text" class="form-control" id="nombreaula" value="{{ old('nombreaula')}}" name="nombreaula">
                   <div id="validarNombreaula" class="text-invalid"></div>
                 </div>
                 <div class="row">
@@ -35,14 +35,14 @@
               <div class="tab-pane fade" id="datosUser-tab" role="tabpanel" aria-labelledby="datosUser-tab">
                   <div class="form-group row">
                     <label for="name" class="font-weight-bold float-left">Nombre</label>
-                  <input type="text" class="form-control" id="name" name="name">
+                  <input type="text" class="form-control" id="name" name="name" value="{{ old('name')}}">
 
                   <div id="validarNombreUser" class="text-invalid"></div>
                   </div>
 
                 <div class="form-group row">
                   <label for="email"class="font-weight-bold" >Correo electrónicooo</label>
-                  <input type="email" class="form-control" id="email" name="email">
+                  <input type="email" class="form-control" id="email" name="email" value="{{ old('email')}}">
                   <div id="validarEmail" class="text-invalid"></div>
                 </div>
                 <div class="form-group row">

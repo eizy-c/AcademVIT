@@ -36,7 +36,7 @@ class AulaController extends Controller
         $user = User::find(Auth::user()->id);
         $user->aulas()->attach([$aula->id]);
 
-        return redirect()->route('aula.index');
+        return redirect()->route('aula.index')->with('success','Aula creada satisfactoriamente.');
     }
 
     public function show(Aula $aula){

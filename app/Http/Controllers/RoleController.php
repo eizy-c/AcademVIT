@@ -8,13 +8,15 @@ use App\Models\Permission;
 use App\Models\Role;
 
 class RoleController extends Controller
-{
+{   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         Gate::authorize('haveaccess','role.index');
-
         $permissions = Permission::get();
-
         $roles = Role::orderBy('id','desc')->paginate();
         return view('admin.roles.index', compact('roles','permissions'));
     }
@@ -39,21 +41,8 @@ class RoleController extends Controller
             $role->permissions()->sync($request->get('permission'));
         endif;
 
-        return redirect()->route('role.index')->with('status_success','Rol registrado satisfactoriamente.');
+        return redirect()->route('role.index')->with('success','Rol registrado satisfactoriamente.');
     }
-
-    public function show(Role $role)
-    {
-        $this->authorize('haveaccess','role.show');
-
-        $permission_role = [];
-        $permissions = Permission::get();
-        foreach ($role->permissions as $permission):
-            $permission_role[] = $permission->id;
-        endforeach;
-        return view('admin.roles.show',compact('role','permissions','permission_role'));
-    }
-
     public function edit(Role $role)
     {
 
@@ -85,7 +74,7 @@ class RoleController extends Controller
         # Asignarlos al nuevo rol
         $role->permissions()->sync($request->get('permission'));
 
-        return redirect()->route('admin.roles.index')->with('status_success','Rol actualizado satisfactoriamente.');
+        return redirect()->route('role.index')->with('success','Rol actualizado satisfactoriamente.');
     }
 
     public function destroy(Role $role)
@@ -93,8 +82,11 @@ class RoleController extends Controller
 
         $this->authorize('haveaccess','role.destroy');
 
-        $role->delete();
-
-        return redirect()->route('admin.roles.index')->with('status_success','Rol eliminado satisfactoriamente.');
+        if(count($role->users) >= 1){
+            return redirect()->route('role.index')->with('danger','Este rol se encuentra en uso.');
+        }else{
+            $role->delete();
+            return redirect()->route('role.index')->with('success','Rol eliminado satisfactoriamente.');
+        }
     }
 }

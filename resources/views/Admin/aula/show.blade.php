@@ -6,7 +6,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h3 class=" mb-0 text-gray-800">{{ $aula->name}} <small>/Cursos</small></h3>
       <div class="d-inline-block">
-        <a  href="#"  data-toggle="modal" data-target="#nuevoCurso" class="btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-lg text-white"></i> Nuevo curso</a>
+        <a  href="#"  data-toggle="modal" data-target="#addCurso" class="btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-lg text-white"></i> Nuevo curso</a>
 
     <a  href="Institucion.html" class="btn btn-sm btn-primary shadow-sm"><i class="fas fa-cog fa-lg text-white"></i> Administración</a>
       </div>

@@ -1,0 +1,139 @@
+body.is-touch #banner {
+  background-attachment: scroll;
+}
+
+body {
+  background-attachment: fixed;
+  background-image: url(../img/1.jpg);
+  background-position: center top;
+  background-size: cover;
+}
+.navbar-login{
+  z-index: 1000;
+  width: 100%;
+  top: 0;
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
+}
+/* Banner */
+
+#content-login {
+  padding-top: 6em;
+  padding-bottom: 10em;
+  background: rgba(0,0,0,0.3);
+
+}
+
+@media screen and (max-width: 736px) {
+
+  #content-login {
+    padding-top: 4em;
+    padding-bottom: 4em;
+  }
+
+}
+.login-text{
+  color: #FFFF;
+  font-size: 4.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+  font-weight: bold;
+}
+.form-login{
+	margin: 0 80px 0 0;
+}
+.input-login {
+    background-color: rgba(255, 255, 255, 0.75) !important;
+    border: none;
+}
+.input-login:focus {
+  background-color: rgba(255, 255, 255, 0.80) !important;
+}
+
+
+.section {
+  padding: 30px 0;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.section-dark{
+    background: #151515;
+}
+.section-dark h3 {
+  color:#FFF;
+  font-size:18px;
+  font-weight:200;
+}
+.section .container:first-child h1,
+.section .container:first-child h2,
+.section .container:first-child h3 {
+  margin-top: 0;
+  font-weight: 700;
+}
+
+/*--------------------------------------------------------------------------
++	Call to Action Bar Style
+--------------------------------------------------------------------------*/
+
+.card-login{
+	    height: 334px;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+}
+.card-login .card-header{
+	background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+}
+
+.card-login .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #109487;
+}
+.card-login .card-text ,.card-login .card-title{
+  color: #054e47;
+}
+.card-login .card-title{
+  font-weight: 800;
+}
+
+
+/* -------- Puntos de corte --------- */
+/* SM*/
+@media (max-width: 576px) {
+
+} 
+/* MD*/
+@media (max-width: 748px) {
+  .form-login{
+    margin: 0;
+  }
+  .about{
+    padding-top: 15%;
+  }
+}
+@media (min-width: 748px) {
+  .form-login{
+    margin: 0;
+  }
+  .login-text{
+    font-size: 3.5rem;
+    line-height: 1.2;
+  }
+}
+/* LG*/
+@media (min-width: 992px) {
+  
+  
+}
+/* XL*/
+@media (min-width: 1200px) {
+  .form-login{
+    margin: 0 80px 0 0;
+  }
+}
+
+

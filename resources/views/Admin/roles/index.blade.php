@@ -24,17 +24,17 @@
           </a>
             @can('haveaccess','role.edit')
             <div class="dropdown no-arrow">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink">
-                <i class="fas fa-ellipsis-v fa-sm fa-fw text-primary"></i>
+              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                 <div class="dropdown-header">Opciones:</div>
                 @can('haveaccess','role.edit')
-                <a class="dropdown-item" href="#">Editar</a>
+                <a class="dropdown-item" href="{{route('role.edit',$role->id)}}">Editar</a>
                 @endcan
                 <div class="dropdown-divider"></div>
                 @can('haveaccess','role.destroy')
-                <a class="dropdown-item" href="#">Eliminar</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#removeRole{{ $role->id}}">Eliminar</a>
                 @endcan
               </div>
             </div>
@@ -42,9 +42,10 @@
           </div>
         </div>
       </div>
+      @include('inc.modal.removeRole')
       @endforeach
     </div>
   </div>
 
-@include('inc.modal.addRole')
+@include('admin.roles.create')
 @endsection

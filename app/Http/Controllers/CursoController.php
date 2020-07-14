@@ -34,7 +34,7 @@ class CursoController extends Controller
         $user->cursos()->attach([$curso->id]);
 
 
-        return  redirect()->route('curso.show',$curso->id);
+        return  redirect()->route('curso.show',$curso->id)->with('success','Curso creado satisfactoriamente.');
     }
      public function create()
     {

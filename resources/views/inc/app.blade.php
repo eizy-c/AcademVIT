@@ -8,10 +8,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>AcademVIT @yield('title')</title>
     <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}" />
-
-  <link href="{{ asset('lib/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('lib/fontawesome/css/all.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+  
   </head>
   <body id="page-top">
   <div id="wrapper" >
@@ -28,15 +27,11 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
+  @include('custom.message')
   @include('inc.modal.logout')
 
   <!-- JavaScript-->
-  <script src="{{ asset('lib/jquery/jquery.min.js')}}"></script>
-  <script src="{{ asset('lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('lib/jquery-easing/jquery.easing.min.js') }}"></script>
-  <script src="{{ asset('js/input-file.js') }}"></script>
-  <script src="{{ asset('js/sb-admin-2.js')}}"></script>
-  <script src="{{ asset('js/main.js')}}"></script>
-
+  <script src="{{ asset('js/app.js')}}"></script>
   </body>
 </html>
