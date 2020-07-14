@@ -1,4 +1,4 @@
-ACADEMVIT. 
+# ACADEMVIT. 
 
 Para poder utilizar este proyecto, debes tener los siguientes requisitos:
 
@@ -33,14 +33,14 @@ cp .env.example .env
 
 5) Configura la nueva base de datos modificando el archivo ".env":
 
-# DB_CONNECTION=mysql
-# DB_HOST=127.0.0.1
-# DB_PORT=3306
-# DB_DATABASE=permisos_bd
-# DB_USERNAME=root
-# DB_PASSWORD=
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=permisos_bd
+DB_USERNAME=root
+DB_PASSWORD=
 
-6) ejecuta <pre>$ php artisan migrate --seed</pre>
+6) ejecuta $ php artisan migrate --seed</pre>
 
 (para migrar las tablas en la base de datos y insertar las seeder)
 
