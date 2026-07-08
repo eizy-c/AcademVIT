@@ -15,6 +15,8 @@ class CreateActividadCursoTable extends Migration
     {
         Schema::create('actividad_curso', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('actividad_id')->constrained('actividades')->onDelete('cascade');
+            $table->foreignId('curso_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

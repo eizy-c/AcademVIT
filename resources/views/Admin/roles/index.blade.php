@@ -1,51 +1,58 @@
 @extends('inc.app')
 @section('title' ,'| Roles')
+
 @section('contenido')
-  <div class="container-fluid mt-4">
-    <div class="d-flex align-items-center justify-content-between mb-4">
-      <div class="d-inline">
-        <h1 class="h3 mb-0 text-gray-800">Roles</h1>
-      </div>
-      <div class="d-inline">
-        <a  href="#" data-toggle="modal" data-target="#addRole" class="btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-lg text-white"></i> Nuevo</a>
-      </div>
-    </div>
-    
-    <div class="row">
-      @foreach($roles as $role)
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card shadow mb-3">
-          <!-- Card Header - Dropdown -->
-          <div class="card-header bg-white py-3 d-flex flex-row align-items-center justify-content-between">
-          <a class="text-gray-700" href="{{route('role.show',$role->id)}}">
-            <div class="text-sm font-weight-bold text-primary text-uppercase mb-1">
-              {{ $role->name }}
+<div class="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <h1 class="text-2xl font-bold text-gray-800">Roles del Sistema</h1>
+    <button onclick="toggleModal('addRoleModal')" class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 shadow-sm transition">
+        <i class="fas fa-plus mr-2"></i> Nuevo Rol
+    </button>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    @foreach($roles as $role)
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition">
+        <div class="p-5 flex justify-between items-start">
+            <div class="block group">
+                <h3 class="text-lg font-bold text-gray-900 transition">{{ $role->name }}</h3>
+                <p class="text-sm text-gray-500 mt-1">{{ Str::limit($role->description, 50) }}</p>
             </div>
-          </a>
+            
             @can('haveaccess','role.edit')
-            <div class="dropdown no-arrow">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                <div class="dropdown-header">Opciones:</div>
-                @can('haveaccess','role.edit')
-                <a class="dropdown-item" href="{{route('role.edit',$role->id)}}">Editar</a>
-                @endcan
-                <div class="dropdown-divider"></div>
-                @can('haveaccess','role.destroy')
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#removeRole{{ $role->id}}">Eliminar</a>
-                @endcan
-              </div>
+            <div class="relative">
+                <button onclick="toggleDropdown('roleDropdown-{{$role->id}}')" class="text-gray-400 hover:text-gray-600 focus:outline-none p-1">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <div id="roleDropdown-{{$role->id}}" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 border border-gray-100 z-10">
+                    <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50">Opciones</div>
+                    @can('haveaccess','role.edit')
+                    <a href="{{route('role.edit',$role->id)}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">
+                        <i class="fas fa-edit mr-2 text-gray-400"></i> Editar
+                    </a>
+                    @endcan
+                    @can('haveaccess','role.destroy')
+                    <button onclick="toggleModal('removeRoleModal-{{$role->id}}')" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                        <i class="fas fa-trash-alt mr-2 text-red-400"></i> Eliminar
+                    </button>
+                    @endcan
+                </div>
             </div>
             @endcan
-          </div>
         </div>
-      </div>
-      @include('inc.modal.removeRole')
-      @endforeach
+        <div class="px-5 py-3 bg-gray-50 border-t border-gray-100 text-xs text-gray-500 flex justify-between items-center">
+            <span>{{ $role->users()->count() }} usuarios</span>
+            @if($role->{'full-access'} == 'yes')
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">Full Access</span>
+            @endif
+        </div>
     </div>
-  </div>
+    @endforeach
+</div>
+@endsection
 
-@include('admin.roles.create')
+@section('modals')
+    @include('admin.roles.create')
+    @foreach($roles as $role)
+        @include('inc.modal.removeRole', ['role' => $role])
+    @endforeach
 @endsection

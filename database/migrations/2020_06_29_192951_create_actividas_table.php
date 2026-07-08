@@ -13,8 +13,11 @@ class CreateActividasTable extends Migration
      */
     public function up()
     {
-        Schema::create('actividas', function (Blueprint $table) {
+        Schema::create('actividades', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateActividasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actividas');
+        Schema::dropIfExists('actividades');
     }
 }
