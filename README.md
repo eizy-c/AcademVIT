@@ -1,10 +1,15 @@
 # AcademVIT
 
-AcademVIT es un sistema de gestión escolar/académica. Esta versión ha sido modernizada para funcionar sobre **Laravel 8**, **PHP 8**, **Vue 3**, **Vite** y **Tailwind CSS**.
+AcademVIT es un sistema de gestión escolar/académica. Esta versión ha sido modernizada exhaustivamente para ofrecer la mejor experiencia tanto a nivel de código como de interfaz de usuario. Actualmente funciona sobre:
+- **Laravel 9**
+- **PHP 8.2**
+- **Tailwind CSS** (Reemplazando Bootstrap 4)
+- **Vite** (Reemplazando Laravel Mix)
+- **Alpine.js** y **Vue 3**
 
 ## Requisitos del Servidor
 Para instalar y correr este proyecto de forma local, asegúrate de tener:
-- PHP >= 8.0 (Recomendado 8.2)
+- PHP >= 8.0.2 (Recomendado 8.2)
 - Composer
 - Node.js (Recomendado >= 18.x) y NPM
 - MySQL / MariaDB (por ejemplo, mediante XAMPP)
@@ -49,7 +54,7 @@ Para instalar y correr este proyecto de forma local, asegúrate de tener:
 6. **Ejecutar Migraciones y Datos Iniciales (Seeders)**
    Esto creará todas las tablas necesarias y registrará los datos por defecto (como el usuario administrador).
    ```bash
-   php artisan migrate --seed
+   php artisan migrate:fresh --seed
    ```
 
 7. **Instalar Dependencias de Frontend (Node.js)**
@@ -57,23 +62,19 @@ Para instalar y correr este proyecto de forma local, asegúrate de tener:
    npm install
    ```
 
-8. **Levantar los Servidores de Desarrollo**
-   Para poder ver la aplicación completa con sus estilos recargando en tiempo real, necesitas abrir **dos terminales** diferentes en la carpeta del proyecto.
+8. **Compilar Activos y Levantar Servidor**
+   Para desarrollo local, compila los assets una vez y levanta el servidor PHP:
 
-   **Terminal 1 (Backend de Laravel):**
    ```bash
+   npm run build
    php artisan serve
    ```
-
-   **Terminal 2 (Frontend Vite):**
-   ```bash
-   npm run dev
-   ```
+   *Nota: Si vas a modificar archivos CSS o JS, usa `npm run dev` en una terminal separada.*
 
 9. **Acceder a la Aplicación**
    Abre tu navegador web y visita: [http://localhost:8000](http://localhost:8000)
 
 ## Credenciales por Defecto
-Una vez instalado y tras correr el seeder, puedes iniciar sesión con:
-- **Email:** `admin@admin.com`
+Una vez instalado y tras correr el seeder, puedes iniciar sesión en el panel con:
+- **Email:** `admin@mail.com`
 - **Contraseña:** `admin`
