@@ -5,11 +5,12 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Traits\UserTrait;
 
 class User extends Authenticatable
 {
-    use Notifiable,UserTrait;
+    use Notifiable, UserTrait;
 
     protected $fillable = [
         'name', 'email', 'password',
@@ -23,13 +24,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-    public function aulas(){
-        return $this->belongsToMany('App\Models\Aula')->withTimesTamps();
-    }
-    public function cursos(){
-        return $this->belongsToMany('App\Models\Curso')->withTimesTamps();
+    public function aulas(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Models\Aula')->withTimestamps();
     }
 
-
+    public function cursos(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Models\Curso')->withTimestamps();
+    }
 }

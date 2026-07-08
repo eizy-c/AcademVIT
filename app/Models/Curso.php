@@ -3,19 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Curso extends Model
 {
     protected $fillable = [
-        'name','token_key'
+        'name', 'slug', 'token_key'
     ];
 
-    public function actividades(){
-    	return $this->belongsToMany('App\Models\Actividad')->withTimesTamps();
+    public function actividades(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Models\Actividad')->withTimestamps();
     }
 
-    public function users(){
-    	return $this->belongsToMany('App\User')->withTimesTamps();
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany('App\User')->withTimestamps();
     }
-
 }

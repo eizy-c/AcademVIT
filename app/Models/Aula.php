@@ -3,18 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Aula extends Model
 {
     protected $fillable = [
-        'name','slug'
+        'name', 'slug'
     ];
 
-    public function cursos(){
-    	return $this->belongsToMany('App\Models\Curso')->withTimesTamps();
+    public function cursos(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Models\Curso')->withTimestamps();
     }
 
-    public function users(){
-    	return $this->belongsToMany('App\Models\User')->withTimesTamps();
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany('App\User')->withTimestamps();
     }
 }

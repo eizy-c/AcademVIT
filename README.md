@@ -76,4 +76,4 @@ Para instalar y correr este proyecto de forma local, asegúrate de tener:
 ## Credenciales por Defecto
 Una vez instalado y tras correr el seeder, puedes iniciar sesión con:
 - **Email:** `admin@admin.com`
-- **Contraseña:** `password`
+- **Contraseña:** `admin`
