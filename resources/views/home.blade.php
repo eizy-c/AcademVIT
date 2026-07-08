@@ -1,49 +1,82 @@
 @extends('inc.app-home')
 @section('contenido')
-    <div class="container-fluid" id="content-login">
-      <div class="row mt-5">
-        <div class="col-md-6 text-center mb-2 d-none d-md-block">
-          <h1 class="login-text">ACADEMVIT</h1>
-          <img src="{{ asset('img/logo.png') }}" class="w-25">
+
+<div class="relative bg-white overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+        <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 mt-10">
+            <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+                <div class="sm:text-center lg:text-left">
+                    <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                        <span class="block xl:inline">Bienvenidos a</span>
+                        <span class="block text-indigo-600 xl:inline">ACADEMVIT</span>
+                    </h1>
+                    <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                        Un entorno digital que posibilita el desarrollo en el proceso de aprendizaje. Conéctate a tus cursos, interactúa y comparte experiencias.
+                    </p>
+                    <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                        <div class="rounded-md shadow">
+                            <a href="#" data-toggle="modal" data-target="#registrar" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                                ¡Regístrate ahora!
+                            </a>
+                        </div>
+                        <div class="mt-3 sm:mt-0 sm:ml-3">
+                            <a href="{{ route('login') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10">
+                                Iniciar sesión
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
-        <div class="col-md-6">
-          <div class="card card-login  form-login text-center">
-            <div class="card-header">
-              <ul class="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" id="pills-institucion-tab" data-toggle="pill" href="#pills-institucion" role="tab" aria-controls="pills-institucion" aria-selected="true">Aula</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="pills-profesor-tab" data-toggle="pill" href="#pills-profesor" role="tab" aria-controls="pills-profesor" aria-selected="false">Profesor</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="pills-estudiante-tab" data-toggle="pill" href="#pills-estudiante" role="tab" aria-controls="pills-estudiante" aria-selected="false">Estudiante</a>
-                </li>
-              </ul>
-            </div>
-            <div class="card-body pt-5">
-              <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-institucion" role="tabpanel" aria-labelledby="pills-institucion-tab">
-                  <h5 class="card-title">¿No Tienes un aula?</h5>
-                  <p class="card-text">¡Crea tu aula virtual en un minuto y logra una mayor experiencia con tus estudiantes!</p>
-                  <a href="#" class="btn btn-success" data-toggle="modal" data-target="#registrar">¡Registrate!</a>
-                </div>
-                <div class="tab-pane fade" id="pills-profesor" role="tabpanel" aria-labelledby="pills-profesor-tab">
-                  <h5 class="card-title">¿Eres profesor?</h5>
-                  <p class="card-text">Publica tus avisos, tareas, pruebas y debates, y comparte archivos con tus estudiantes.</p>
-                  <a href="#" class="btn btn-success" data-toggle="modal" data-target="#loginProfesor">Registrate</a>
-                </div>
-                <div class="tab-pane fade" id="pills-estudiante" role="tabpanel" aria-labelledby="pills-estudiante-tab">
-                  <h5 class="card-title">¿Eres estudiante?</h5>
-                  <p class="card-text">Conectate a tus cursos e interactuá y comparte experiencias con otros estudiantes.</p>
-                  <a href="#" class="btn btn-success" data-toggle="modal" data-target="#loginEstudiante">Registrate</a>
-                </div>
-              </div>
-            </div>
-          </div>
+    </div>
+    <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 flex justify-center items-center p-10 bg-indigo-50">
+        <img class="h-56 w-full object-contain sm:h-72 md:h-96 lg:w-full lg:h-full drop-shadow-xl" src="{{ asset('img/logo.png') }}" alt="Logo AcademVIT">
+    </div>
+</div>
+
+<div class="bg-gray-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">¿Qué rol cumples?</h2>
+            <p class="mt-4 text-lg text-gray-500">Tenemos herramientas diseñadas específicamente para ti.</p>
         </div>
-      </div>
-    </div>  
+
+        <div class="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            
+            <!-- Aula -->
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300">
+                <div class="w-16 h-16 mx-auto bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                    <i class="fa fa-school text-2xl text-indigo-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Aula</h3>
+                <p class="text-gray-600 mb-4">¡Crea tu aula virtual en un minuto y logra una mayor experiencia con tus estudiantes!</p>
+                <a href="#" data-toggle="modal" data-target="#registrar" class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded transition">Registrar Aula</a>
+            </div>
+
+            <!-- Profesor -->
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300">
+                <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                    <i class="fa fa-chalkboard-teacher text-2xl text-blue-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Profesor</h3>
+                <p class="text-gray-600 mb-4">Publica tus avisos, tareas, pruebas y debates, y comparte archivos con tus estudiantes.</p>
+                <a href="#" data-toggle="modal" data-target="#loginProfesor" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded transition">Registrate</a>
+            </div>
+
+            <!-- Estudiante -->
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300">
+                <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
+                    <i class="fa fa-user-graduate text-2xl text-green-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Estudiante</h3>
+                <p class="text-gray-600 mb-4">Conéctate a tus cursos, interactúa y comparte experiencias con otros estudiantes.</p>
+                <a href="#" data-toggle="modal" data-target="#loginEstudiante" class="inline-block bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded transition">Registrate</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 @include('about')
 
 @endsection

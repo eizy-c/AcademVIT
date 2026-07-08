@@ -1,58 +1,79 @@
-# ACADEMVIT
-## Como utilizarlos
+# AcademVIT
 
-Para poder utilizar este proyecto, debes tener los siguientes requisitos:
+AcademVIT es un sistema de gestión escolar/académica. Esta versión ha sido modernizada para funcionar sobre **Laravel 8**, **PHP 8**, **Vue 3**, **Vite** y **Tailwind CSS**.
 
-1. Debes tener la versión de PHP mayor o igual a la **7.2.5**
-para mas información visita la documentación oficial de Laravel: https://laravel.com/docs/7.x
+## Requisitos del Servidor
+Para instalar y correr este proyecto de forma local, asegúrate de tener:
+- PHP >= 8.0 (Recomendado 8.2)
+- Composer
+- Node.js (Recomendado >= 18.x) y NPM
+- MySQL / MariaDB (por ejemplo, mediante XAMPP)
 
-2. Debes tener instalado composer en tu equipo: https://getcomposer.org/
+## Instalación Paso a Paso
 
-3. Si utilizas windows, puedes descargar el programa git desde la página oficial: https://gitforwindows.org/
+1. **Clonar el Repositorio**
+   ```bash
+   git clone https://github.com/eizy-c/AcademVIT.git
+   cd AcademVIT
+   ```
 
-**Si cumples con estos prerequisitos, entonces podrás instalar este proyecto.**
+2. **Instalar Dependencias de Backend (PHP)**
+   ```bash
+   composer install
+   ```
 
-**Pasos para instalar este proyecto correctamente:
+3. **Configurar el Entorno**
+   Copia el archivo de ejemplo para crear tu configuración local:
+   ```bash
+   cp .env.example .env
+   ```
+   *(En Windows puedes usar `copy .env.example .env` o hacerlo manualmente).*
 
-4. Descarga este proyecto o clónalo con el comando: 
+4. **Generar la Clave de Aplicación**
+   ```bash
+   php artisan key:generate
+   ```
 
-<pre>git clone git://github.com/EizagaYC/AcademVIT.git</pre>
+5. **Configurar la Base de Datos**
+   Abre el archivo `.env` que acabas de crear y configura las credenciales de tu base de datos MySQL local:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=acadenvit_bd
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+   *Asegúrate de crear previamente una base de datos vacía llamada `acadenvit_bd` en tu phpMyAdmin o gestor de base de datos preferido.*
 
-5. Ejecutar el comando: 
+6. **Ejecutar Migraciones y Datos Iniciales (Seeders)**
+   Esto creará todas las tablas necesarias y registrará los datos por defecto (como el usuario administrador).
+   ```bash
+   php artisan migrate --seed
+   ```
 
-<pre>$ composer install </pre>
+7. **Instalar Dependencias de Frontend (Node.js)**
+   ```bash
+   npm install
+   ```
 
-(esto es para descargar las dependencias de php)
+8. **Levantar los Servidores de Desarrollo**
+   Para poder ver la aplicación completa con sus estilos recargando en tiempo real, necesitas abrir **dos terminales** diferentes en la carpeta del proyecto.
 
-6. Copiar el archivo ".env.example" y pegarlo con el nombre: ".env". Si estas con el sistema gitforwindows, o en linux o mac, puedes ejecutar el siguiente comando: 
+   **Terminal 1 (Backend de Laravel):**
+   ```bash
+   php artisan serve
+   ```
 
-<pre>cp .env.example .env</pre>
+   **Terminal 2 (Frontend Vite):**
+   ```bash
+   npm run dev
+   ```
 
-7. Debemos generar una nueva llave de laravel con el siguiente comando:
+9. **Acceder a la Aplicación**
+   Abre tu navegador web y visita: [http://localhost:8000](http://localhost:8000)
 
-<pre>$ php artisan key:generate</pre>
-
-8. Configura la nueva base de datos modificando el archivo ".env":
-
-- DB_CONNECTION=mysql
-- DB_HOST=127.0.0.1
-- DB_PORT=3306
-- DB_DATABASE=permisos_bd
-- DB_USERNAME=root
-- DB_PASSWORD=
-
-9. Ejecuta 
-
-<pre>$ php artisan migrate --seed</pre>
-
-*(para migrar las tablas en la base de datos y insertar las seeder)
-
-10. ejecuta <pre>$ npm install && npm run dev</pre>
-
-(esto es para descargar las dependencias de javascript y compilar los archivos js)
-
-11. Finalmente ejecuta este comando 
-
-<pre>$  php artisan serve </pre>
-
-y prueba el proyecto que debe funcionar.
+## Credenciales por Defecto
+Una vez instalado y tras correr el seeder, puedes iniciar sesión con:
+- **Email:** `admin@admin.com`
+- **Contraseña:** `password`

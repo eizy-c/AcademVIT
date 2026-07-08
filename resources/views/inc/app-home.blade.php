@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -9,65 +8,53 @@
     <title>AcademVIT @yield('title')</title>
     <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}" />
     <link href="{{ asset('lib/fontawesome/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/home.css') }}" rel="stylesheet" type="text/css">
+    
+    <!-- Vite Assets -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
   </head>
-  <body>
-     <!-- navbar -->
-    <nav class="navbar navbar-expand topbar navbar-login fixed-top">
-
-      <!-- Sidebar Toggle (Topbar) -->
-      <ul class="navbar-nav mr-auto d-md-none" id="logo"> 
-          <li class="nav-item">
-            <a class="d-flex align-items-center justify-content-center" href="/">
-                <img class="img-profile" style="width: 50px;" src="{{ asset('img/logo.png') }}">
-                <h4 class="text-white font-weight-bold ml-2 my-auto">ACADEMVIT</h4>
-            </a>
-          </li>
-      </ul>
-
-      <ul class="navbar-nav ml-auto"> 
-      <li class="nav-item">
-        <form method="POST" action="{{ route('login') }}" class="d-none d-md-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-          @csrf
-          <div class="input-group">
-            <input type="email" class="form-control input-login " placeholder="Correo electrónico" name="email" required>
-            <input type="password" class="form-control input-login " placeholder="Contraseña" name="password" required>
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in-alt"></i></button>
-            </div>
-          </div>
-        </form>
-      </li>
-      <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-        <li class="nav-item dropdown no-arrow d-md-none ">
-          <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-sign-in-alt text-white"></i> 
-          </a>
-          <div class="dropdown-menu dropdown-menu-right px-3 shadow animated--grow-in" aria-labelledby="loginDropdown">
-            <h6 class="font-weight-bold text-center">Iniciar sesión</h6>
-            <form method="POST" action="{{ route('login') }}" class="form-inline mr-auto w-100 navbar-search">
-              @csrf
-              <div class="input-group">
-                <input type="email" class="form-control input-login mb-2 mr-sm-2" placeholder="Correo electrónico" name="email" required>
-                <input type="password" class="form-control  input-login mb-2 mr-sm-2" placeholder="Contraseña" name="password" required>
-                <div class="input-group-append">
-                  <button type="submit" class="btn btn-primary mb-2"><i class="fa fa-sign-in-alt"></i></button>
+  <body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+    
+    <!-- Navbar -->
+    <nav class="bg-indigo-600 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center gap-3">
+                        <img class="w-10 h-10 object-contain bg-white rounded-full p-1 shadow" src="{{ asset('img/logo.png') }}" alt="Logo">
+                        <span class="text-white font-bold text-xl tracking-wider">ACADEMVIT</span>
+                    </a>
                 </div>
-              </div>
-            </form>
-          </div>
-        </li>
-    </ul>
-  </nav>
 
-  <section id="banner">
+                <!-- Desktop Login Form -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <form method="POST" action="{{ route('login') }}" class="flex items-center gap-2">
+                        @csrf
+                        <input type="email" name="email" placeholder="Correo electrónico" required class="w-48 px-3 py-1.5 text-sm rounded-md border-0 focus:ring-2 focus:ring-indigo-300 text-gray-900 placeholder-gray-500 shadow-inner">
+                        <input type="password" name="password" placeholder="Contraseña" required class="w-48 px-3 py-1.5 text-sm rounded-md border-0 focus:ring-2 focus:ring-indigo-300 text-gray-900 placeholder-gray-500 shadow-inner">
+                        <button type="submit" class="bg-indigo-800 hover:bg-indigo-700 text-white px-4 py-1.5 rounded-md transition duration-150 ease-in-out shadow font-medium">
+                            <i class="fa fa-sign-in-alt mr-1"></i> Entrar
+                        </button>
+                    </form>
+                </div>
 
-    @yield('contenido')
-  </section>
+                <!-- Mobile Login Toggle -->
+                <div class="md:hidden flex items-center">
+                    <a href="{{ route('login') }}" class="text-white hover:text-indigo-200">
+                        <i class="fa fa-sign-in-alt text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-16">
+        @yield('contenido')
+    </main>
+
     @include('custom.message')
     @include('auth.register')
 
-  <script src="{{ asset('js/app.js')}}"></script>
   </body>
 </html>

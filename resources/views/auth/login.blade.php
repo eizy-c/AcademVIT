@@ -1,103 +1,90 @@
 @extends('inc.app-home')
 @section('contenido')
 
-<div class="login-content">
-  <div class="login-background"> 
-    <div class="container-fluid py-4">
-      <div class="row mt-5">
-        <div class="col-md-6 text-center mb-2">
-          <h3 class="login-text">BIENVENIDOS A </h3>
-          <h1 class="login-text display-3">ACADEMVIT</h1>
-          <img src="{{ asset('img/logo.png') }}" class="w-25">
-          @if( session('success') )
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}!
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-          @endif
-        </div>
-        <div class="col-md-6">
-          <div class="card card-login  form-login">
-            <div class="card-header text-center">
-              <h3>{{ __('Iniciar sesión') }}</h3>
-            </div>
-            <div class="card-body pt-5">
-              <form method="POST" action="{{ route('login') }}">
-                        @csrf
+<div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Iniciar sesión
+        </h2>
+        <p class="mt-2 text-center text-sm text-gray-600">
+            Ingresa tus credenciales para acceder a <span class="font-semibold text-indigo-600">ACADEMVIT</span>
+        </p>
+    </div>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right font-weight-bold">{{ __('Correo electrónico') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            
+            @if( session('success') )
+                <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fa fa-check-circle text-green-400"></i>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right font-weight-bold">{{ __('Contraseña') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Recordarme') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-success btn-block">
-                                    {{ __('Iniciar sesión') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-secondary" href="{{ route('password.request') }}">
-                                        {{ __('¿Olvido su contraseña?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>  
-  </div>
-</div>
- <div class="section section-dark">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="calltoaction-wrapper">
-                            <h3><span class="h4" style="color:#009688; text-transform:uppercase;">AcademVIT!</span> es un entorno digital que posibilita el desarrollo en el proceso de aprendizaje.</h3>
+                        <div class="ml-3">
+                            <p class="text-sm text-green-700">
+                                {{ session('success') }}!
+                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
+
+            <form method="POST" action="{{ route('login') }}" class="space-y-6">
+                @csrf
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">
+                        {{ __('Correo electrónico') }}
+                    </label>
+                    <div class="mt-1">
+                        <input id="email" name="email" type="email" autocomplete="email" required value="{{ old('email') }}"
+                            class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('email') border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500 @enderror">
+                    </div>
+                    @error('email')
+                        <p class="mt-2 text-sm text-red-600" id="email-error">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">
+                        {{ __('Contraseña') }}
+                    </label>
+                    <div class="mt-1">
+                        <input id="password" name="password" type="password" autocomplete="current-password" required
+                            class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('password') border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500 @enderror">
+                    </div>
+                    @error('password')
+                        <p class="mt-2 text-sm text-red-600" id="password-error">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember" name="remember" type="checkbox" {{ old('remember') ? 'checked' : '' }}
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="remember" class="ml-2 block text-sm text-gray-900">
+                            {{ __('Recordarme') }}
+                        </label>
+                    </div>
+
+                    @if (Route::has('password.request'))
+                    <div class="text-sm">
+                        <a href="{{ route('password.request') }}" class="font-medium text-indigo-600 hover:text-indigo-500">
+                            {{ __('¿Olvidó su contraseña?') }}
+                        </a>
+                    </div>
+                    @endif
+                </div>
+
+                <div>
+                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        {{ __('Iniciar sesión') }}
+                    </button>
+                </div>
+            </form>
+            
         </div>
+    </div>
+</div>
 
 @endsection

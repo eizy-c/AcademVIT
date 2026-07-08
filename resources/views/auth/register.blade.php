@@ -1,100 +1,109 @@
+<!-- Modal overlay -->
+<div id="registrar" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        
+        <!-- Background backdrop -->
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModal('registrar')"></div>
 
-  <!-- Modal crear aula-->
-<div class="modal fade" id="registrar" tabindex="-1" role="dialog"  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered " role="document">
-    <div class="modal-content p-0">
-      <div class="card">
-        <div class="card-header text-center">
-          <ul class="nav nav-tabs card-header-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" id="datosAula-nav" data-toggle="tab" href="#datosAula-tab" role="tab" aria-controls="datosAula" aria-selected="true">Aula educativa</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="datosUser-nav" data-toggle="tab" href="#datosUser-tab" role="tab" aria-controls="datosUser" aria-selected="false">Usuario</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="verificar-nav" data-toggle="tab" href="#verificar-tab" role="tab" aria-controls="verificar" aria-selected="false">Verificar</a>
-            </li>
-          </ul>
-        </div>
-        <form  method="POST" action="{{ route('register') }}" name="add_aula">
-            @csrf
-          <div class="card-body">
-            <div class="tab-content px-2" id="myTabContent">
-              <div class="tab-pane fade show active" id="datosAula-tab" role="tabpanel" aria-labelledby="datosAula-tab">
-                <div class="form-group row">
-                  <label for="nombreaula" class="font-weight-bold">Nombre del aula</label>
-                  <input type="text" class="form-control" id="nombreaula" value="{{ old('nombreaula')}}" name="nombreaula">
-                  <div id="validarNombreaula" class="text-invalid"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+        <!-- Modal panel -->
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                            Registro de Aula / Usuario
+                        </h3>
+                        <div class="mt-4">
+                            <form method="POST" action="{{ route('register') }}" id="registerForm">
+                                @csrf
+                                
+                                <!-- Step 1: Aula -->
+                                <div id="step-1" class="space-y-4 block">
+                                    <div>
+                                        <label for="nombreaula" class="block text-sm font-medium text-gray-700">Nombre del aula</label>
+                                        <input type="text" id="nombreaula" name="nombreaula" value="{{ old('nombreaula')}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2 px-3 border" required>
+                                    </div>
+                                    <div class="flex justify-end mt-4">
+                                        <button type="button" onclick="nextStep(2)" class="inline-flex justify-center rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
+                                            Siguiente
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Step 2: User -->
+                                <div id="step-2" class="space-y-4 hidden">
+                                    <div>
+                                        <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+                                        <input type="text" id="name" name="name" value="{{ old('name')}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2 px-3 border" required>
+                                    </div>
+                                    <div>
+                                        <label for="email_reg" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+                                        <input type="email" id="email_reg" name="email" value="{{ old('email')}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2 px-3 border" required>
+                                    </div>
+                                    <div>
+                                        <label for="password_reg" class="block text-sm font-medium text-gray-700">Contraseña</label>
+                                        <input type="password" id="password_reg" name="password" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2 px-3 border" required>
+                                    </div>
+                                    <div>
+                                        <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirmar contraseña</label>
+                                        <input type="password" id="password_confirmation" name="password_confirmation" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md py-2 px-3 border" required>
+                                    </div>
+                                    <input type="hidden" name="tipo" value="profesor">
+
+                                    <div class="flex justify-between mt-4">
+                                        <button type="button" onclick="nextStep(1)" class="inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
+                                            Regresar
+                                        </button>
+                                        <button type="submit" class="inline-flex justify-center rounded-md border border-transparent px-4 py-2 bg-green-600 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:text-sm">
+                                            Crear aula
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
-                  <button type="button" name="next-datosUser" id="next_datosUser" class="btn btn-info ml-auto">Siguiente</button>
-                </div>
-              </div>
-
-              <div class="tab-pane fade" id="datosUser-tab" role="tabpanel" aria-labelledby="datosUser-tab">
-                  <div class="form-group row">
-                    <label for="name" class="font-weight-bold float-left">Nombre</label>
-                  <input type="text" class="form-control" id="name" name="name" value="{{ old('name')}}">
-
-                  <div id="validarNombreUser" class="text-invalid"></div>
-                  </div>
-
-                <div class="form-group row">
-                  <label for="email"class="font-weight-bold" >Correo electrónicooo</label>
-                  <input type="email" class="form-control" id="email" name="email" value="{{ old('email')}}">
-                  <div id="validarEmail" class="text-invalid"></div>
-                </div>
-                <div class="form-group row">
-                  <label for="password" class="font-weight-bold">Contraseña</label>
-                  <input type="password" class="form-control" id="password" name="password">
-                  <div id="validarPassword" class="text-invalid"></div>
-                </div>
-                <div class="form-group row">
-                  <label for="password_confirmation" class="font-weight-bold">Confirmar contraseña</label>
-                  <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
-                  <div id="validarpassword_confirmation" class="text-invalid"></div>
-                </div>
-
-                <input type="hidden" class="form-control" id="tipo" name="tipo" value="profesor">
-
-
-                <div class="row">
-                  <button type="button" name="previous-datosUser" id="previous_datosUser" class="btn btn-secondary ml-auto">Regresar</button>
-                  <button type="button" name="next-verificar" id="next_Verificar" class="btn btn-info">Siguiente</button>
-                </div>
-              </div>
-
-              <div class="tab-pane fade" id="verificar-tab" role="tabpanel" aria-labelledby="verificar-tab">
-               <div class="row">
-                <table class="table table-borderless table-sm">
-                  <tbody>
-                    <tr>
-                      <th>aula</th>
-                      <td id="aula-name"></td>
-                    </tr>
-                    <tr><th></th><td></td></tr>
-                    <tr><th></th><td></td></tr>
-                    <tr>
-                      <th>Nombre</th>
-                      <td id="user-name"></td>
-                    </tr>
-                    <tr>
-                      <th>correo electrónico</th>
-                      <td id="user-email"></td>
-                    </tr>
-                  </tbody>
-                </table>
-               </div>
-                <div class="row">
-                  <button type="button" name="previous-datosUser" id="previous_verificar" class="btn btn-secondary ml-auto">Regresar</button>
-                  <button type="submit" name="crear-aula" id="btn-crear" class="btn btn-success">Crear aula</button>
-                </div>
-              </div>
             </div>
-          </div>
-        </form>
-      </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="button" onclick="closeModal('registrar')" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancelar
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
+<script>
+    function openModal(id) {
+        document.getElementById(id).classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+        document.getElementById(id).classList.add('hidden');
+    }
+
+    function nextStep(step) {
+        if(step === 1) {
+            document.getElementById('step-2').classList.add('hidden');
+            document.getElementById('step-1').classList.remove('hidden');
+            document.getElementById('step-1').classList.add('block');
+        } else if(step === 2) {
+            document.getElementById('step-1').classList.add('hidden');
+            document.getElementById('step-2').classList.remove('hidden');
+            document.getElementById('step-2').classList.add('block');
+        }
+    }
+
+    // Intercept data-toggle="modal" logic for standard anchor links to open the modal
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('[data-toggle="modal"]').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                let target = this.getAttribute('data-target').replace('#', '');
+                openModal(target);
+            });
+        });
+    });
+</script>
