@@ -30,11 +30,10 @@ Route::middleware(['guest'])->group(function () {
 	Route::resource('/', 'HomeController');
 
 });
-	Route::resource('leccion','LeccionController');
-	Route::resource('nota','NotaController');
-	Route::resource('participante','ParticipanteController');
-	Route::resource('archivo','ArchivoController');
-	Route::resource('multimedia','MultimediaController');
-	Route::resource('debate','DebateController');
-	
-	Route::resource('examen','ExamenController');
+// Route::resource('leccion','LeccionController');
+// Route::resource('nota','NotaController');
+// Route::resource('participante','ParticipanteController');
+// Route::resource('archivo','ArchivoController');
+// Route::resource('multimedia','MultimediaController');
+// Route::resource('debate','DebateController');
+// Route::resource('examen','ExamenController');
