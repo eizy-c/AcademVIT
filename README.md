@@ -1,7 +1,7 @@
 # AcademVIT
 
 AcademVIT es un sistema de gestión escolar/académica. Esta versión ha sido modernizada exhaustivamente para ofrecer la mejor experiencia tanto a nivel de código como de interfaz de usuario. Actualmente funciona sobre:
-- **Laravel 9**
+- **Laravel 11**
 - **PHP 8.2**
 - **Tailwind CSS** (Reemplazando Bootstrap 4)
 - **Vite** (Reemplazando Laravel Mix)
